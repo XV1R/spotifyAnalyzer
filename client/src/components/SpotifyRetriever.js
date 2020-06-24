@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 
-
 export default function SpotifyRetriever() {
   const [playlists, setPlaylist] = useState([])
   useEffect(() => {
@@ -17,13 +16,14 @@ export default function SpotifyRetriever() {
     })
       .then(json => json.json())
       .then(res => {
-        console.log(res)
+        //console.log(res)
         setPlaylist(res.items)
 
       })
       .catch(err => console.error(err));
   }, []);
   console.log(playlists)
+  /*
   let songs = {}
 
   // Format data as json object
@@ -35,9 +35,9 @@ export default function SpotifyRetriever() {
       artists.push(playlists[i].track.artists[j].name)
     }
     songs[playlists[i].track.name] = { artist: artists, duration: playlists[i].track.duration_ms, album: playlists[i].track.album.name, popularity: playlists[i].track.popularity }
-    console.log(artists)
+    //console.log(artists)
   }
-  console.log(songs)
+  console.log(songs)*/
 
   return <div></div>;
 }

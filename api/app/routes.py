@@ -21,7 +21,8 @@ access_token =''
 
 @app.route('/')
 def index():
-    return render_template('base.html', title='home')
+    return redirect(REDIRECT_URI )
+    #render_template('base.html', title='home')
 
 # Directs to spotify's authorization page
 # Once returning from the page, link now has an auth code
@@ -30,10 +31,10 @@ def index():
 @app.route('/api/login')
 def login():
     auth_url = f'{API_BASE}/authorize?client_id={CLIENT_ID}&response_type=code&redirect_uri={REDIRECT_URI}&scope={SCOPE}&show_dialog={SHOW_DIALOG}'
-    print(auth_url)
+    #print(auth_url)
     return redirect(auth_url)
 
-
+'''
 @app.route('/api/callback')
 def callback():
     code = request.args.get('code')
@@ -49,7 +50,7 @@ def callback():
     print(res.json())
     session["toke"] = res_body.get("access_to_token")
     return render_template("callback.html")
-
+'''
 
 """
     Test route for front-end
@@ -72,7 +73,6 @@ def retrieve():
     })
     obj = res.json()
     access_token = obj.get('access_token')
-    print(access_token)
     user_object = user.UserBeforeAfter(access_token)
     return jsonify(user_object.retrieve()) 
 
