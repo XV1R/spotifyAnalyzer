@@ -13,6 +13,7 @@ REDIRECT_URI = 'http://localhost:3000'
 SCOPE = "user-library-read user-read-private user-read-recently-played user-top-read"
 API_BASE = 'https://accounts.spotify.com'
 SHOW_DIALOG = True
+access_token =''
 
 # TODO
 # All templates used are only temporary and exist for testing purposes. They will be replaced with the appropiate front end
@@ -71,8 +72,9 @@ def retrieve():
     })
     obj = res.json()
     access_token = obj.get('access_token')
+    print(access_token)
     user_object = user.UserBeforeAfter(access_token)
-    return jsonify(user_object.retrieve())
+    return jsonify(user_object.retrieve()) 
 
 
 @app.after_request
